@@ -27,7 +27,9 @@ const ProductScreen = (props) => {
         <MessageBox variant='danger'>{error}</MessageBox>
       ) : (
         <div>
-          <Link to='/'>Back To Results</Link>
+          <Link className='btn' to='/'>
+            <strong>Back To Results</strong>
+          </Link>
           <div className='row top'>
             <div className='col-2'>
               <img className='large' src={product.image} alt={product.name} />

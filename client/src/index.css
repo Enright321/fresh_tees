@@ -1,6 +1,7 @@
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+  height: 100%;
 }
 body {
   margin: 0;
@@ -10,12 +11,37 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* utility */
+.text-center {
+  text-align: center;
+}
 
 /* Variables */
 :root {
-  --main-color: #203040;
+  --main-color: #003238;
   --secondary-color: #72cfac;
+  --light-grey: #a4a4a4;
+  --light-color: #f4f4f4;
+  --dark-color: #333;
   --star-color: #f0c040;
+  --badge: #f02020;
+  --success: #20a020;
+  --danger: #a02020;
+  --info: #2020a0;
+  --checkout-steps: #f08000;
+}
+
+.light-color {
+  color: var(--light-color) !important;
+}
+.dark-color {
+  color: var(--dark-color) !important;
 }
 
 /* Layout */
@@ -26,7 +52,7 @@ body {
     'main'
     'footer';
   grid-template-columns: 1fr;
-  grid-template-rows: 5rem 1fr 5rem;
+  grid-template-rows: 5rem 1fr 8rem;
   height: 100%;
 }
 header {
@@ -41,6 +67,7 @@ footer {
   grid-area: footer;
   background-color: var(--main-color);
   color: #fff;
+  height: 100%;
 }
 
 /* Common */
@@ -73,28 +100,50 @@ textarea,
 button {
   padding: 1rem;
   border-radius: 0.5rem;
-  border: 0.1rem #a4a4a4 solid;
+  border: 0.1rem var(--light-grey) solid;
   font-size: 1.6rem;
   font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 button {
-  background-color: #f8f8f8;
+  background-color: var(--light-color);
   cursor: pointer;
 }
 input:hover,
 select:hover,
 textarea:hover,
 button:hover {
-  border: 0.1rem #333 solid;
+  border: 0.1rem var(--dark-color) solid;
 }
 
 button.primary {
-  background-color: #f0c040;
+  background-color: var(--star-color);
 }
 button.block {
   width: 100%;
+}
+button.small {
+  font-size: 1.2rem;
+}
+
+.btn {
+  padding: 1rem;
+  position: absolute;
+  margin: 2rem;
+  border-radius: 0.5rem;
+  border: 0.1rem var(--light-grey) solid;
+  font-size: 1.6rem;
+  font-family: Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--light-color);
+  cursor: pointer;
+}
+
+.btn:hover {
+  color: var(--light-color);
+  background-color: var(--main-color);
 }
 
 /* Header */
@@ -111,7 +160,7 @@ a.logo {
   font-weight: bold;
 }
 .badge {
-  background-color: #f02020;
+  background-color: var(--badge);
   color: #fff;
   border-radius: 50%;
   padding: 0.2rem 0.7rem;
@@ -158,7 +207,8 @@ img.large {
 
 /* Card */
 .card {
-  background-color: #f8f8f8;
+  background-color: var(--main-color);
+  color: var(--light-color);
   border-radius: 0.5rem;
   margin: 1rem;
   -webkit-box-shadow: 0px 10px 13px -7px #000000,
@@ -185,15 +235,19 @@ img.large {
   margin: 0.1rem;
 }
 .rating span:last-child {
-  color: var(--main-color);
+  color: var(--star-color);
 }
 
 /* Alert */
+.loading {
+  display: block !important;
+}
+
 .success {
-  color: #20a020;
+  color: var(--success);
 }
 .danger {
-  color: #a02020;
+  color: var(--danger);
 }
 .alert {
   padding: 1rem;
@@ -201,10 +255,85 @@ img.large {
   border-radius: 0.5rem;
 }
 .alert-info {
-  color: #2020a0;
-  background-color: #e0e0ff;
+  color: var(--info);
+  background-color: var(--light-color);
 }
 .alert-danger {
-  color: #a02020;
-  background-color: #ffe0e0e0;
+  color: var(--danger);
+  background-color: var(--light-color);
+}
+
+.alert-success {
+  color: var(--success);
+  background-color: var(--light-color);
+}
+
+/* Form */
+.form {
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.form > div {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+.form label {
+  margin: 1rem 0;
+}
+
+/* Dropdown */
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-content {
+  position: absolute;
+  display: none;
+  right: 0;
+  min-width: 12rem;
+  padding: 1rem;
+  z-index: 1;
+  background-color: var(--main-color);
+  margin: 0;
+  margin-top: 0.4rem;
+  border-radius: 0.5rem;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Checkout Steps */
+.checkout-steps > div {
+  border-top: 0.3rem #c0c0c0 solid;
+  color: #c0c0c0;
+  flex: 1;
+  padding: 1rem;
+  font-weight: bold;
+}
+
+.checkout-steps > div.active {
+  border-top-color: var(--checkout-steps);
+  color: var(--checkout-steps);
+}
+
+/* table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table tbody tr:nth-of-type(odd) {
+  background-color: var(--light-color);
+}
+.table td,
+.table th {
+  text-align: left;
+  border: 0.1rem solid #e4e4e4;
+  padding: 0.5rem;
+}
+.table button {
+  margin: 0 0.2rem;
 }

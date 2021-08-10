@@ -10,8 +10,8 @@ const Product = (props) => {
         <img className='medium' src={product.image} alt={product.name} />
       </Link>
       <div className='card-body'>
-        <Link to='product.html'>
-          <h2>{product.name}</h2>
+        <Link to={`/product/${product._id}`}>
+          <h2 className='light-color'>{product.name}</h2>
         </Link>
         <Rating rating={product.rating} numReviews={product.numReviews} />
         <div className='price'>${product.price}</div>
